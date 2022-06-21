@@ -17,12 +17,11 @@
   
 <body class="container" style="margin-top: 50px;
     width: 50%; height:auto;">
-      
-    <h2 class="text-primary" style=
-        "margin-left: 15px; margin-bottom: 10px">
+
+    <h2 class="text-primary" style="margin-left: 15px; margin-bottom: 10px">
         Dados do Aluno:
     </h2>
-      
+
     <form class="container" id="contactForm">
         <div class="card">
             <div class="card-body">
@@ -30,144 +29,80 @@
                     <label for="exampleFormControlInput1">
                         Nome do Aluno
                     </label>
-                      
-                    <input type="text" required class="form-control" 
-                    id="nome" placeholder="Nome do Aluno" autofocus>
-                </div>
-				
-                <!div class="form-group">
-                    <!label for="exampleFormControlInput1"> 
-					<!Responsavel Legal>
-					<!/label>
-                      
-                    <!input type="text" required class="form-control" 
-                    id="responsavel" placeholder="Responsavel legal">
-                </!div>
- 
-                <div class="form-group">
-                    <label for="exampleFormControlInput1">
-                        Telefone para contato
-                    </label>
-                      
-                    <input type="text" required class="form-control" 
-                    id="telefone" placeholder="Telefone para contato">
+
+                    <input type="text" required class="form-control"
+                           id="nome" placeholder="Nome do Aluno" autofocus>
                 </div>
 
                 <div class="form-group">
                     <label for="exampleFormControlInput1">
-                        Problema em Questão?
+                        Telefone para contato
                     </label>
-                      
-                    <input type="text" required class="form-control" 
-                    id="problema" placeholder="Problema em Questão?">
+
+                    <input type="text" required class="form-control"
+                           id="telefone" placeholder="Telefone para contato">
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">
+                        Dificuldade em Questão?
+                    </label>
+
+                    <input type="text" required class="form-control"
+                           id="problema" placeholder="Dificuldade em Questão?">
                 </div>
 
                 <div class="form-group">
                     <label for="exampleFormControlInput1">
                         Possui deficiência?
                     </label>
-                      
-                    <input type="text" required class="form-control" 
-                    id="deficiencia" placeholder="Possui deficiência?">
+
+                    <input type="text" required class="form-control"
+                           id="deficiencia" placeholder="Possui deficiência?">
                 </div>
-				
+
                 <div class="form-group">
                     <label for="exampleFormControlInput1">
                         Escola onde estuda
                     </label>
-                      
-                    <input type="text" required class="form-control" 
-                    id="escola" placeholder="Escola onde estuda">
+
+                    <input type="text" required class="form-control"
+                           id="escola" placeholder="Escola onde estuda">
                 </div>
-				
+
                 <div class="form-group">
                     <label for="exampleFormControlInput1">
                         Idade
                     </label>
-                      
-                    <input type="text" required class="form-control" 
-                    id="idade" placeholder="Idade do Aluno">
+
+                    <input type="text" required class="form-control"
+                           id="idade" placeholder="Idade do Aluno">
                 </div>
-				
+
                 <div class="form-group">
                     <label for="exampleFormControlInput1">
                         Série
                     </label>
-                      
-                    <input type="text" required class="form-control" 
-                    id="serie" placeholder="Série">
+
+                    <input type="text" required class="form-control"
+                           id="serie" placeholder="Série">
                 </div>
             </div>
             <button type="submit" class="btn btn-primary"
-                style="margin-left: 15px; margin-top: 10px;
+                    style="margin-left: 15px; margin-top: 10px;
 				width: 50%; height:auto;">
                 Enviar
             </button><br>
 
-		</div>
+        </div>
     </form>
-  
-    <script src=
-"https://www.gstatic.com/firebasejs/3.7.4/firebase.js">
+
+    <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js">
     </script>
-      
-    <script>
-        var firebaseConfig = {
-			  apiKey: "AIzaSyDrpMrYarxw1LSVBdrb7ATIP0AY6c7bXGw",
-			  authDomain: "adce-ep.firebaseapp.com",
-			  databaseURL: "https://adce-ep-default-rtdb.firebaseio.com",
-			  projectId: "adce-ep",
-			  storageBucket: "adce-ep.appspot.com",
-			  messagingSenderId: "193624687904",
-			  appId: "1:193624687904:web:d30ad2ea44e3533edc8345",
-			  measurementId: "G-0VH40VDXPT"
-        };
-  
-        firebase.initializeApp(firebaseConfig);
-  
-        var messagesRef = firebase.database()
-            .ref('Alunos');
-          
-        document.getElementById('contactForm')
-            .addEventListener('submit', submitForm);
-  
-        function submitForm(e) {
-            e.preventDefault();
-  
-            // Get values
-            var nome = getInputVal('nome');
-			//var responsavel = getInputVal('responsavel');
-			var telefone = getInputVal('telefone');
-			var problema = getInputVal('problema');
-			var deficiencia = getInputVal('deficiencia');
-			var escola = getInputVal('escola');
-            var idade = getInputVal('idade');
-			var serie = getInputVal('serie');
-  
-            saveMessage(nome, telefone, problema, deficiencia, escola, idade, serie);
-            document.getElementById('contactForm').reset();
-        }
-  
-        // Function to get get form values
-        function getInputVal(id) {
-            return document.getElementById(id).value;
-        }
-  
-        // Save message to firebase
-        function saveMessage(nome, telefone, problema, deficiencia, escola, idade, serie) {
-            var newMessageRef = messagesRef.push();
-            newMessageRef.set({
-                nome: nome,
-                //responsavel: responsavel,
-				telefone: telefone,
-				problema: problema,
-				deficiencia: deficiencia,
-				escola: escola,
-				idade: idade,
-				serie: serie,
-            });
-        }
+
+    <script src="formulario.js">
     </script>
+
 </body>
   
 </html>
