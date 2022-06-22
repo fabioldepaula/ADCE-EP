@@ -13,6 +13,17 @@
         integrity=
 "sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
         crossorigin="anonymous">
+    <style>
+        table {
+            width: 30%;
+            margin: auto;
+        }
+        td, th {
+        }
+        h1 {
+            text-align:center;
+        }
+    </style>
 
 </head>
   
@@ -23,11 +34,13 @@
         <h1>Dados do Aluno: </h1>
     </div>
 
+    <div id="div_lista"></div>
+
+
     <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js">
     </script>
 
     <script>
-
         var firebaseConfig = {
             apiKey: "AIzaSyDrpMrYarxw1LSVBdrb7ATIP0AY6c7bXGw",
             authDomain: "adce-ep.firebaseapp.com",
@@ -41,13 +54,27 @@
 
         firebase.initializeApp(firebaseConfig);
 
-        var ref = firebase.database().ref("Alunos");
+        var var_lista = document.getElementById("div_lista");
 
-        ref.on("value", function (snapshot) {
+        var nome = ""
+        var key = ""
+
+        let usersRef = firebase.database().ref('Alunos');
+        usersRef.orderByValue().on("value", function (snapshot) {
             console.log(snapshot.val());
-            
-        });
+            snapshot.forEach((childSnapshot) => {
+                const Key = childSnapshot.key;
+                const Nome= childSnapshot.val().nome;
+                console.log(Nome);
 
+                key = "<table>" + "<tr><td>" + (Key) + "</td></tr>" + key;
+                nome = "<table>" + "<tr><td>" + (Nome) + "</td></tr>" + nome;
+                
+                var_lista.innerHTML = nome + key;
+
+
+            });
+        });
 
     </script>
 
