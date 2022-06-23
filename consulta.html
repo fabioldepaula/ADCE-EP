@@ -31,6 +31,25 @@
 
 
     <div>
+        <h1>Consulta Aluno: </h1>
+    </div>
+
+    <div class="form-group">
+        <label for="exampleFormControlInput1">
+            Nome do Aluno
+        </label>
+
+        <input type="text" required class="form-control"
+               id="nome" placeholder="Nome do Aluno" autofocus>
+    </div>
+
+    <button type="submit" onclick="submit()" class="btn btn-primary"
+            style="margin-left: 15px; margin-top: 10px;
+				width: 50%; height:auto;">
+        Pesquisar
+    </button><br><br>
+
+    <div>
         <h1>Dados do Aluno: </h1>
     </div>
 
@@ -54,27 +73,35 @@
 
         firebase.initializeApp(firebaseConfig);
 
-        var var_lista = document.getElementById("div_lista");
+        function getInputVal(id) {
+            return document.getElementById(id).value;
+        }
 
-        var nome = ""
-        var key = ""
+        function submit() {
 
-        let usersRef = firebase.database().ref('Alunos');
-        usersRef.orderByValue().on("value", function (snapshot) {
-            console.log(snapshot.val());
-            snapshot.forEach((childSnapshot) => {
-                const Key = childSnapshot.key;
-                const Nome= childSnapshot.val().nome;
-                console.log(Nome);
+            var nome = getInputVal('nome');
 
-                key = "<table>" + "<tr><td>" + (Key) + "</td></tr>" + key;
-                nome = "<table>" + "<tr><td>" + (Nome) + "</td></tr>" + nome;
-                
-                var_lista.innerHTML = nome + key;
+            var var_lista = document.getElementById("div_lista");
 
 
+            let usersRef = firebase.database().ref('Alunos');
+            usersRef.orderByChild('nome').equalTo(nome).on("value", function (snapshot) {
+
+
+                console.log(snapshot.val());
+                snapshot.forEach(function (childSnapshot) {
+                    const alunoKey = childSnapshot.key;
+                    const alunoNome = childSnapshot.val().nome;
+                    const alunoTel = childSnapshot.val().telefone;
+                    console.log(alunoKey);
+
+                    var_lista.innerHTML = alunoKey + "Nome:" + alunoNome + "Telefone:" + alunoTel;
+                    //console.log(data.nome);
+                    //console.log(data.);
+                });
             });
-        });
+        }
+
 
     </script>
 
