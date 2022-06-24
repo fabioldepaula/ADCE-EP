@@ -17,6 +17,7 @@
         table {
             width: 30%;
             margin: auto;
+            text-align: center;
         }
         td, th {
         }
@@ -27,82 +28,45 @@
 
 </head>
   
-<body>
+<body class="container" style="margin-top: 50px; width: 50%; height:auto;">
 
-
-    <div>
+    <div class="text-primary" style=
+        "margin-left: 15px; margin-bottom: 10px">
         <h1>Consulta Aluno: </h1>
     </div>
 
-    <div class="form-group">
-        <label for="exampleFormControlInput1">
-            Nome do Aluno
-        </label>
+    <form class="container" id="contactForm">
 
-        <input type="text" required class="form-control"
-               id="nome" placeholder="Nome do Aluno" autofocus>
-    </div>
+        <div class="form-group">
+            <label for="exampleFormControlInput1">
+                Nome do Aluno
+            </label>
 
-    <button type="submit" onclick="submit()" class="btn btn-primary"
-            style="margin-left: 15px; margin-top: 10px;
-				width: 50%; height:auto;">
-        Pesquisar
-    </button><br><br>
+            <input type="text" required class="form-control"
+                   id="nome" placeholder="Nome do Aluno" autofocus>
+        </div>
+    </form>
 
     <div>
-        <h1>Dados do Aluno: </h1>
+        <button id="pesquisar" type="submit" onclick="submitForm()" class="btn btn-primary"  style="margin-left: 15px; margin-top: 10px;
+				     height:auto;">
+            Pesquisar
+        </button>
+        <button id="limpar" type="submit" onclick="limpaPagina()" class="btn btn-primary"   style="margin-left: 15px; margin-top: 10px;
+				     height:auto;">
+            Limpar
+        </button>
     </div>
 
     <div id="div_lista"></div>
 
+    <div id="li"class="text-primary" style=
+        "margin-left: 15px; margin-bottom: 10px"></div>
 
     <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js">
     </script>
 
-    <script>
-        var firebaseConfig = {
-            apiKey: "AIzaSyDrpMrYarxw1LSVBdrb7ATIP0AY6c7bXGw",
-            authDomain: "adce-ep.firebaseapp.com",
-            databaseURL: "https://adce-ep-default-rtdb.firebaseio.com",
-            projectId: "adce-ep",
-            storageBucket: "adce-ep.appspot.com",
-            messagingSenderId: "193624687904",
-            appId: "1:193624687904:web:d30ad2ea44e3533edc8345",
-            measurementId: "G-0VH40VDXPT"
-        };
-
-        firebase.initializeApp(firebaseConfig);
-
-        function getInputVal(id) {
-            return document.getElementById(id).value;
-        }
-
-        function submit() {
-
-            var nome = getInputVal('nome');
-
-            var var_lista = document.getElementById("div_lista");
-
-
-            let usersRef = firebase.database().ref('Alunos');
-            usersRef.orderByChild('nome').equalTo(nome).on("value", function (snapshot) {
-
-
-                console.log(snapshot.val());
-                snapshot.forEach(function (childSnapshot) {
-                    const alunoKey = childSnapshot.key;
-                    const alunoNome = childSnapshot.val().nome;
-                    const alunoTel = childSnapshot.val().telefone;
-                    console.log(alunoKey);
-
-                    var_lista.innerHTML = alunoKey + "Nome:" + alunoNome + "Telefone:" + alunoTel;
-                    //console.log(data.nome);
-                    //console.log(data.);
-                });
-            });
-        }
-
-
+    <script src="consulta.js">
     </script>
 
 </body>
