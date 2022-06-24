@@ -54,3 +54,8 @@
    
             }
         }
+        function paginaInicial() {
+
+            window.location.href = "index.html";
+
+        }

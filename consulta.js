@@ -26,9 +26,9 @@
                 //console.log(usersRef.equalTo(varNome).m.ac)
                 //console.log(snapshot.A.k.ba);
                 //console.log(snapshot.numChildren());
-                if (varNome === "") {
+                if (varNome == "") {
                     window.alert("Digite um nome para pesquisa");
-                } else if (usersRef.equalTo(varNome).m.ac === varNome) {
+                } else if (usersRef.equalTo(varNome).m.ac == varNome) {
                     //console.log(snapshot.val());
                     var li = document.getElementById('li');
                     var html = "";
@@ -58,5 +58,10 @@
         function limpaPagina() {
 
             window.location.href = "consulta.html";
+
+        }
+        function paginaInicial() {
+
+            window.location.href = "index.html";
 
         }
